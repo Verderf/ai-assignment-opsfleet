@@ -1,0 +1,24 @@
+# Environment Variables (Secrets)
+# .env
+
+# Google Cloud Credentials
+# credentials/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Generated Data
+data/faiss_index/

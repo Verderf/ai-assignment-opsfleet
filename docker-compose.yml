@@ -1,0 +1,13 @@
+services:
+  agent:
+    build: .
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/gcp-key.json
+    stdin_open: true
+    tty: true
+    command: python src/main.py
+

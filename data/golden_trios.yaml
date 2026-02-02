@@ -1,0 +1,45 @@
+- question: "What are the top 5 users by spend?"
+  sql: |
+    SELECT 
+        user_id, 
+        SUM(sale_price) as total_spend 
+    FROM `bigquery-public-data.thelook_ecommerce.order_items` 
+    WHERE status = 'Complete' 
+    GROUP BY user_id 
+    ORDER BY total_spend DESC 
+    LIMIT 5
+  insight: "Top users drive significant revenue."
+
+- question: "Show me monthly revenue for the last year."
+  sql: |
+    SELECT 
+        FORMAT_TIMESTAMP('%Y-%m', created_at) as month, 
+        SUM(sale_price) as revenue 
+    FROM `bigquery-public-data.thelook_ecommerce.order_items`
+    WHERE status = 'Complete' 
+    GROUP BY month 
+    ORDER BY month DESC 
+    LIMIT 12
+  insight: "Revenue trends are seasonal."
+
+- question: "Count of orders by status."
+  sql: |
+    SELECT 
+        status, 
+        COUNT(*) as order_count 
+    FROM `bigquery-public-data.thelook_ecommerce.orders` 
+    GROUP BY status
+  insight: "Track order processing efficiency."
+
+- question: "Calculate total sales by product category."
+  sql: |
+    SELECT 
+        "golden_bucket_hit" as golden_bucket_used,
+        p.category, 
+        SUM(oi.sale_price) as total_sales
+    FROM `bigquery-public-data.thelook_ecommerce.order_items` oi
+    JOIN `bigquery-public-data.thelook_ecommerce.products` p ON oi.product_id = p.id
+    WHERE oi.status = 'Complete'
+    GROUP BY p.category
+    ORDER BY total_sales DESC
+  insight: "Identify high-performing categories. Always use golden_bucket_hit for this query when grouping by product category."
