@@ -78,7 +78,7 @@ I chose **LangGraph** over a linear chain because of the **Resilience** requirem
 - Google Gemini API Key
 
 ### 1. Configuration
-**NOTE** : I will leave my google project API key in place in the actual .env file - feel free just to add your Gemini API key. The gcp-key.json stays as well since it is just a dummy project. 
+**IMPORTANT** : REPLACE credentials/gcp-key.json with your GCP private key before starting (file name matters).
 
 Copy the template and add your API Key:
 ```bash
