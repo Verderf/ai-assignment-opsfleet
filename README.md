@@ -23,7 +23,7 @@ The system follows a cyclic graph architecture designed for resilience and safet
 
 ```mermaid
 graph TD
-    UserInput(User Question) --> Retrieve[Retrieve "Golden Knowledge"]
+    UserInput(User Question) --> Retrieve[Retrieve Golden Knowledge]
     Retrieve --> GenSQL[Node: SQL Generator]
     GenSQL --> ExecSQL[Node: SQL Executor]
     
@@ -151,15 +151,15 @@ To satisfy the requirement for strict oversight on destructive actions, I would 
 ```mermaid
 graph TD
     Start(User Input) --> Router{Intent?}
-    Router -- "Analyze Data" --> SQLGen[SQL Generator]
-    Router -- "Delete Reports" --> AuthCheck{Authorized?}
+    Router -- Analyze Data --> SQLGen[SQL Generator]
+    Router -- Delete Reports --> AuthCheck{Authorized?}
     
     AuthCheck -- No --> Deny[Response: Access Denied]
     AuthCheck -- Yes --> ConfirmState[State: Awaiting Confirmation]
     
     ConfirmState --> Interrupt((STOP & ASK))
-    Interrupt -- "User says: CONFIRM" --> ExecuteDelete[Delete Reports Node]
-    Interrupt -- "User says: NO" --> Cancel[Response: Cancelled]
+    Interrupt -- User says: CONFIRM --> ExecuteDelete[Delete Reports Node]
+    Interrupt -- User says: NO --> Cancel[Response: Cancelled]
     
     ExecuteDelete --> LogAudit[Audit Log]
     LogAudit --> Success[Response: Reports Deleted]
