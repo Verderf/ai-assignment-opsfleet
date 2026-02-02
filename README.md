@@ -2,10 +2,10 @@
 
 A resilient, safe, and intelligent data agent built with **LangGraph** and **Google Gemini**.
 
-## Assessment requirements checklist 
+## Assessment requirements checklist
 
 | Requirement | Implementation Details | Status |
-
+| :--- | :--- | :--- |
 | **1. Hybrid Intelligence** | **RAG Pipeline**: `GoldenKnowledgeBase` retrieves similar SQL examples (using FAISS) to guide Gemini. Verified via "Tracer Bullet" test. | ✅ Implemented |
 | **2. Safety & PII Masking** | **PII Scrubber Node**: Vectorized Pandas logic redacts Email, Phone, Name, and Address from results *before* synthesis. | ✅ Implemented |
 | **3. Oversight (Destructive Ops)** | **Design Only**: HITL architecture with `interrupt_before` and `Intent Router` described in "High-Stakes Oversight Design". | Designed |
@@ -14,6 +14,7 @@ A resilient, safe, and intelligent data agent built with **LangGraph** and **Goo
 | **6. Quality Assurance** | **Golden Set Runner**: implemented with the mock FAISS store. "Tracer Bullet" confirms RAG usage. | ✅ Implemented |
 | **7. Logging** | **Contextual Logs**: System logs SQL generation, RAG hits, and Execution results using python native logging. Design proposed for a **LangSmith** integration. | ✅ Implemented |
 | **8. Agility (Persona)** | **Config File**: `config/persona.yaml` controls agent tone. Hot-reloadable via Docker Volumes (Dev) or ConfigMaps (Prod). | ✅ Implemented |
+
 
 ---
 
